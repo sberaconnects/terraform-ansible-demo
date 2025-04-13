@@ -1,7 +1,6 @@
 
 provider "aws" {
   region = "eu-north-1"
-  profile = "default"
 }
 
 resource "aws_instance" "devops_demo" {
