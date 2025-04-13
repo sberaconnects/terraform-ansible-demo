@@ -1,5 +1,4 @@
-
-name: Terraform + Ansible CI/CD
+name: Provision Infrastructure with Terraform + Ansible
 
 on:
   push:
@@ -8,28 +7,30 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ./terraform
+    - name: Terraform Init
+      run: terraform init
+      working-directory: terraform
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: ./terraform
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: terraform
 
-      - name: Run Ansible Playbook
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          script: |
-            sudo apt update
-            sudo apt install -y ansible
-            ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
+    - name: Run Ansible Playbook via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          sudo apt update
+          sudo apt install -y ansible
+          echo "${{ secrets.EC2_HOST }}" > inventory.ini
+          ansible-playbook -i inventory.ini ansible/playbook.yml

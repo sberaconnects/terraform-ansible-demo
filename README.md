@@ -50,9 +50,6 @@ ansible-playbook -i inventory.ini playbook.yml --private-key ~/.ssh/devops-key.p
 ./scripts/destroy.sh
 ```
 
-## 📸 Architecture Diagram
-
-![diagram](diagram.png)
 
 ## 🙌 Author
 Sudhir Kumar Bera | [GitHub](https://github.com/sberaconnects)
