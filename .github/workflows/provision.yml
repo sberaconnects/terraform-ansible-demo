@@ -34,11 +34,14 @@ jobs:
       
     - name: Run Ansible Playbook from Runner
       run: |
+        echo "${{ secrets.EC2_KEY }}" > ec2_key.pem
+        chmod 600 ec2_key.pem
         echo "${{ secrets.EC2_HOST }}" > inventory.ini
         ansible-playbook -i inventory.ini ansible/playbook.yml \
-          --private-key <(echo "${{ secrets.EC2_KEY }}") \
+          --private-key ec2_key.pem \
           -u ubuntu \
           -e "ansible_ssh_common_args='-o StrictHostKeyChecking=no'"
+
 
           
           
