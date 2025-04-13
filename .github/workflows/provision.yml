@@ -32,12 +32,13 @@ jobs:
     - name: Install Ansible on GitHub runner
       run: sudo apt update && sudo apt install -y ansible
       
-    - name: Run Ansible Playbook FROM GitHub runner
+    - name: Run Ansible Playbook from Runner
       run: |
         echo "${{ secrets.EC2_HOST }}" > inventory.ini
         ansible-playbook -i inventory.ini ansible/playbook.yml \
           --private-key <(echo "${{ secrets.EC2_KEY }}") \
-          -u ubuntu
+          -u ubuntu \
+          -e "ansible_ssh_common_args='-o StrictHostKeyChecking=no'"
 
           
           
