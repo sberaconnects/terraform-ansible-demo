@@ -1,4 +1,6 @@
 
+![CI](https://github.com/sberaconnects/terraform-ansible-demo/actions/workflows/provision.yml/badge.svg)
+
 # 🚀 Terraform + Ansible DevOps Demo
 
 This project showcases how to provision infrastructure using **Terraform** and configure it using **Ansible**, fully automated and ready for CI/CD integration via **GitHub Actions**.
@@ -50,6 +52,18 @@ ansible-playbook -i inventory.ini playbook.yml --private-key ~/.ssh/devops-key.p
 ./scripts/destroy.sh
 ```
 
+## 🌐 Live Demo
+
+This is the NGINX default page running on EC2 provisioned via Terraform + configured via Ansible:
+
+![NGINX Demo](nginx-demo.png)
+
+
+---
 
 ## 🙌 Author
-Sudhir Kumar Bera | [GitHub](https://github.com/sberaconnects)
+
+**Sudhir Kumar Bera**  
+Senior Embedded Software Engineer → DevOps Enthusiast  
+🌐 [GitHub](https://github.com/sberaconnects) | 📍 Oberhausen, Germany
+
