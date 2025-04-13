@@ -1,10 +1,11 @@
 
 provider "aws" {
   region = "eu-north-1"
+  profile = "default"
 }
 
 resource "aws_instance" "devops_demo" {
-  ami           = "i-0b4659902c3e80571"
+  ami = "ami-0c1ac8a41498c1a9c"  # eu-north-1 (Stockholm)
   instance_type = "t3.micro"
   key_name      = "devops-key"
 
