@@ -40,3 +40,6 @@ jobs:
           sudo apt install -y ansible
           echo "${{ secrets.EC2_HOST }}" > inventory.ini
           ansible-playbook -i inventory.ini ansible/playbook.yml
+  
+          
+          
